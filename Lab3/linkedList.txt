@@ -1,0 +1,61 @@
+package com.tasks3.linkedlist;
+
+public class LinkedList {
+    private Node first;
+    private Node last;
+    private int size;
+    
+    public LinkedList() {
+        
+    }
+
+    public void add(Integer data) {
+        Node newNode = new Node();
+        newNode.setData(data);
+        if(size == 0)
+            first = newNode;
+        else
+            last.setNext(newNode);
+        
+        last = newNode;    
+        size++;
+    }
+
+    public Integer get(int index) {
+        return findByIndex(index).getData();
+    }
+
+    public boolean delete(int index) {
+        if(findByIndex(index) != null) {
+            if(index != 0) {
+                findByIndex(index-1).setNext(findByIndex(index+1));
+            }
+            else
+                first = first.getNext();
+            size--;
+            return true;
+        }
+        return false;
+    }
+
+    public int size() {
+        return size;
+    }
+    
+    private Node findByIndex(int index) {
+        if(index < size && index >= 0) {
+            Node currentNode = first;
+            int currentIndex = 0;
+            while(currentIndex < index) {
+                if(currentNode.getNext() != null) {
+                    currentNode = currentNode.getNext();
+                    currentIndex++;
+                }
+            }
+            return currentNode;
+        } 
+        else
+            return null;
+    }
+}   
+      
