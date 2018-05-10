@@ -1,0 +1,79 @@
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+        if (args == null || args.length == 0) {
+            System.out.println("Параметри для запуску програми:\n" +
+                    "\"параметр режиму роботи\" \"довжина слова\" \"текст\"");
+        }
+        else {
+            StringBuilder str = new StringBuilder();
+            switch (args[0]) {
+                case "-h":
+                   System.out.println("Виконав - Маляр Роман");
+                   System.out.println("Призначення - видалення з тексту слова заданої довжини, що\n" +
+                           "починаються на приголосну літеру. Вивести початковий текст та результат.\n");
+                   System.out.println("Параметри для визначення режиму роботи програми:\n" +
+                           "\"-h\" - відображається інформація про програму.\n" +
+                           "\"-d\" - в процесі роботи програми відображаються додаткові дані.\n" +
+                           "Якшо параметр не вказаний тоді програма виведе початковий текст і результат.\n");
+                   System.out.println("Параметри для запуску програми:\n" +
+                           "\"параметр режиму роботи\" \"довжина слова\" \"текст\"");
+                   break;
+
+                case "-d":
+                    for(int i = 2; i < args.length; i++) {
+                        int num = Integer.parseInt(args[1]);
+                        char now = args[i].charAt(0);
+                        int j = i - 1;
+                        System.out.println("Перевірка " + j + " елементу на довжину");
+                        if(args[i].length() == num) {
+                            System.out.println("Довжина співпадає");
+                            if(now != 'a' && now != 'e' && now != 'i' && now != 'o' && now != 'y') {
+                                System.out.println("Починається на приголосний тому слово \"" + args[i] + "\" видаляємо");
+                            }
+                            else {
+                                System.out.println("Починається на голосний тому слово \"" + args[i] + "\" не видаляємо");
+                                str.append(args[i]);
+                                str.append(" ");
+                            }
+                        }
+                        else {
+                            System.out.println("Довжина не співпадає тому слово \"" + args[i] + "\" не видаляємо");
+                            str.append(args[i]);
+                            str.append(" ");
+                        }
+                        System.out.println();
+                    }
+                    System.out.print("Початковий текст - ");
+                    for(int i = 2; i < args.length; i++) {
+                        System.out.print(args[i] + " ");
+                    }
+                    System.out.println("\n" + "Результат - " + str);
+                    break;
+
+                default:
+                    for(int i = 1; i < args.length; i++) {
+                        int num = Integer.parseInt(args[0]);
+                        char now = args[i].charAt(0);
+                        if(args[i].length() == num) {
+                            if(!(now != 'a' && now != 'e' && now != 'i' && now != 'o' && now != 'y')) {
+                                str.append(args[i]);
+                                str.append(" ");
+                            }
+                        }
+                        else {
+                            str.append(args[i]);
+                            str.append(" ");
+                        }
+                    }
+                    for(int i = 1; i < args.length; i++) {
+                        System.out.print(args[i] + " ");
+                    }
+                    System.out.println("\n" + str);
+            }
+        }
+    }
+}
+
